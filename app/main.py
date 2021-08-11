@@ -20,18 +20,19 @@ def read_root():
     response = RedirectResponse(url="/docs")
     return response  
 
-@app.get('/colonias/{nombre}', response_model=_schemas.ShowColonia)
+@app.get('/colonias/{nombre}', response_model=List[_schemas.ShowColonia])
 def read_colonia(
             nombre: str, 
             db: _orm.Session=Depends(_database.get_db)):
     db_colonia = _services.get_colonia(db=db, nombre=nombre)
+
     if db_colonia is None:
         raise HTTPException(
             status_code=404, detail='sorry this colonia does not exist'
         )
     return db_colonia
 
-@app.get('/colonias/cp/{cp}', response_model=_schemas.ShowColonia)
+@app.get('/colonias/cp/{cp}', response_model=List[_schemas.ShowColonia])
 def read_colonia_by_cp(
             cp: str, 
             db: _orm.Session=Depends(_database.get_db)):
@@ -43,7 +44,7 @@ def read_colonia_by_cp(
     return db_colonia
 
 
-@app.get('/municipio/{nombre}', response_model=_schemas.ShowMunicipio)
+@app.get('/municipio/{nombre}', response_model=List[_schemas.ShowMunicipio])
 def read_municipio(
             nombre: str, 
             db: _orm.Session=Depends(_database.get_db)):

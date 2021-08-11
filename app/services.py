@@ -2,14 +2,14 @@ import sqlalchemy.orm as _orm
 import app.models as _models
 
 def get_colonia(db: _orm.Session, nombre:str):
-    return db.query(_models.Colonia).filter(_models.Colonia.d_asenta == nombre).first()
+    return db.query(_models.Colonia).filter(_models.Colonia.d_asenta == nombre).all()
 
 def get_colonia_by_cp(db: _orm.Session, cp:str):
-    return db.query(_models.Colonia).filter(_models.Colonia.d_codigo == cp).first()
+    return db.query(_models.Colonia).filter(_models.Colonia.d_codigo == cp).all()
 
 
 def get_municipio(db: _orm.Session, nombre:str):
-    return db.query(_models.Municipio).filter(_models.Municipio.D_mnpio == nombre).first()
+    return db.query(_models.Municipio).filter(_models.Municipio.D_mnpio == nombre).all()
 
 def get_municipios(db:_orm.Session, skip:int, limit:int):
     return db.query(_models.Municipio).offset(skip).limit(limit).all()
