@@ -43,6 +43,10 @@ def read_colonia_by_cp(
         )
     return db_colonia
 
+@app.post('/colonias', response_model=_schemas.ShowColonia)
+def create(colonia: _schemas.Colonia, db: _orm.Session=Depends(_database.get_db)):
+    return _services.create_colonia(db=db, colonia=colonia)
+
 
 @app.get('/municipio/{nombre}', response_model=List[_schemas.ShowMunicipio])
 def read_municipio(
