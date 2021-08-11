@@ -4,6 +4,9 @@ import app.models as _models
 def get_colonia(db: _orm.Session, nombre:str):
     return db.query(_models.Colonia).filter(_models.Colonia.d_asenta == nombre).first()
 
+def get_colonia_by_cp(db: _orm.Session, cp:str):
+    return db.query(_models.Colonia).filter(_models.Colonia.d_codigo == cp).first()
+
 
 def get_municipio(db: _orm.Session, nombre:str):
     return db.query(_models.Municipio).filter(_models.Municipio.D_mnpio == nombre).first()

@@ -31,6 +31,17 @@ def read_colonia(
         )
     return db_colonia
 
+@app.get('/colonias/cp/{cp}', response_model=_schemas.ShowColonia)
+def read_colonia_by_cp(
+            cp: str, 
+            db: _orm.Session=Depends(_database.get_db)):
+    db_colonia = _services.get_colonia_by_cp(db=db, cp=cp)
+    if db_colonia is None:
+        raise HTTPException(
+            status_code=404, detail='sorry this colonia does not exist'
+        )
+    return db_colonia
+
 
 @app.get('/municipio/{nombre}', response_model=_schemas.ShowMunicipio)
 def read_municipio(
