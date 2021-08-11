@@ -10,13 +10,13 @@ class Colonia(BaseModel):
     D_mnpio: str
     d_estado: str
     d_CP: str
-    c_estado:str
-    c_CP:str
+    c_estado:str 
+    c_CP: Optional[str]
     c_tipo_asenta:str
     c_mnpio:str
     id_asenta_cpcons:str
     d_zona:str
-    c_cve_ciudad:str
+    c_cve_ciudad: Optional[str] #
     class Config():
         orm_mode = True
 
