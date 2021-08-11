@@ -39,3 +39,15 @@ class ShowMunicipio(Municipio):
     id:int
     class Config():
         orm_mode = True
+
+
+class Estado(BaseModel):
+    d_estado: str
+    c_estado: str
+    class Config():
+        orm_mode = True
+
+class ShowEstado(Estado):
+    id:int
+    class Config():
+        orm_mode = True    

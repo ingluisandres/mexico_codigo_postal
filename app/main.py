@@ -31,6 +31,7 @@ def read_colonia(
         )
     return db_colonia
 
+
 @app.get('/municipio/{nombre}', response_model=_schemas.ShowMunicipio)
 def read_municipio(
             nombre: str, 
@@ -42,7 +43,6 @@ def read_municipio(
         )
     return db_municipio
 
-
 @app.get('/municipio', response_model=List[_schemas.ShowMunicipio])
 def read_municipios(
             skip: int=0, 
@@ -50,3 +50,15 @@ def read_municipios(
             db: _orm.Session=Depends(_database.get_db)):
     municipios = _services.get_municipios(db=db, skip=skip, limit=limit)
     return municipios
+
+
+@app.get('/estado/{nombre}', response_model=_schemas.ShowEstado)
+def read_estado(
+            nombre: str, 
+            db: _orm.Session=Depends(_database.get_db)):
+    db_estado = _services.get_estado(db=db, nombre=nombre)
+    if db_estado is None:
+        raise HTTPException(
+            status_code=404, detail='sorry this estado does not exist'
+        )
+    return db_estado
