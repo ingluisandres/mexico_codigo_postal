@@ -49,5 +49,6 @@ class Estado(BaseModel):
 
 class ShowEstado(Estado):
     id:int
+    municipios_list: List[ShowMunicipio]
     class Config():
         orm_mode = True    

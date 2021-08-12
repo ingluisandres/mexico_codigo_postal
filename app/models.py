@@ -11,6 +11,8 @@ class Estado(_database.Base):
     d_estado = _sql.Column(_sql.String, index=True)
     c_estado = _sql.Column(_sql.String, index=True)
 
+    municipios_list = _orm.relationship('Municipio', back_populates='estado')
+
 
 class Municipio(_database.Base):
     __tablename__ = "municipios"
@@ -18,7 +20,9 @@ class Municipio(_database.Base):
     D_mnpio = _sql.Column(_sql.String, index=True)
     c_mnpio = _sql.Column(_sql.String, index=True)
     d_estado = _sql.Column(_sql.String, index= True)
-    c_estado = _sql.Column(_sql.String, index= True)
+    c_estado = _sql.Column(_sql.Integer, _sql.ForeignKey('estados.id'))
+
+    estado = _orm.relationship('Estado', back_populates='municipios_list')
 
 
 class Colonia(_database.Base):
