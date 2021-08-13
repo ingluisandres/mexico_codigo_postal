@@ -59,7 +59,7 @@ def read_municipio(
         )
     return db_municipio
 
-@app.get('/municipio', response_model=List[_schemas.ShowMunicipio])
+@app.get('/municipio', response_model=List[_schemas.ShowAllMunicipios])
 def read_municipios(
             skip: int=0, 
             limit: int=10, 
