@@ -1,15 +1,16 @@
-import sqlalchemy.orm as _orm
+from sqlalchemy.orm import Session
+
 import app.models as _models
 import app.schemas as _schemas
 
 
-def get_colonia(db: _orm.Session, nombre:str):
+def get_colonia(db: Session, nombre:str):
     return db.query(_models.Colonia).filter(_models.Colonia.d_asenta == nombre).all()
 
-def get_colonia_by_cp(db: _orm.Session, cp:str):
+def get_colonia_by_cp(db: Session, cp:str):
     return db.query(_models.Colonia).filter(_models.Colonia.d_codigo == cp).all()
 
-def create_colonia(db: _orm.Session, colonia: _schemas.Colonia):
+def create_colonia(db: Session, colonia: _schemas.Colonia):
     db_colonia = _models.Colonia(
         d_codigo= colonia.d_codigo,
         d_asenta=colonia.d_asenta,
@@ -31,12 +32,12 @@ def create_colonia(db: _orm.Session, colonia: _schemas.Colonia):
     return db_colonia
 
 
-def get_municipio(db: _orm.Session, nombre:str):
+def get_municipio(db: Session, nombre:str):
     return db.query(_models.Municipio).filter(_models.Municipio.D_mnpio == nombre).all()
 
-def get_municipios(db:_orm.Session, skip:int, limit:int):
+def get_municipios(db:Session, skip:int, limit:int):
     return db.query(_models.Municipio).offset(skip).limit(limit).all()
 
 
-def get_estado(db: _orm.Session, nombre:str):
+def get_estado(db: Session, nombre:str):
     return db.query(_models.Estado).filter(_models.Estado.d_estado == nombre).first()
