@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from fastapi import APIRouter
 from typing import Optional, List
 from fastapi import Depends, HTTPException
@@ -10,6 +12,9 @@ router = APIRouter(
     prefix="/login",
     tags=["login"]
 )
+
+
+ACCESS_TOKEN_EXPIRE_MINUTES = 30  
 
 
 @router.post('/')

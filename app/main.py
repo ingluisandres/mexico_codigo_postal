@@ -7,9 +7,6 @@ from app import database
 from app.routers import admin, login
 
 
-ACCESS_TOKEN_EXPIRE_MINUTES = 30  
-
-
 app = FastAPI()
 
 database.create_database()
