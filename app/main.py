@@ -1,6 +1,3 @@
-import sys
-sys.path.append("..")
-
 from typing import Optional, List
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
