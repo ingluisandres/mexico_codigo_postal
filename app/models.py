@@ -1,10 +1,10 @@
 from  sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-import app.database as _database
+from app.database import Base
 
 
-class Estado(_database.Base):
+class Estado(Base):
     __tablename__ = "estados"
     id = Column(Integer, primary_key=True, index=True)
     d_estado = Column(String, index=True)
@@ -12,7 +12,7 @@ class Estado(_database.Base):
     municipios_list = relationship('Municipio', back_populates='estado')
 
 
-class Municipio(_database.Base):
+class Municipio(Base):
     __tablename__ = "municipios"
     id = Column(Integer, primary_key=True, index=True)
     D_mnpio = Column(String, index=True)
@@ -24,7 +24,7 @@ class Municipio(_database.Base):
     colonias_list = relationship('Colonia', back_populates='municipio')
 
 
-class Colonia(_database.Base):
+class Colonia(Base):
     __tablename__ = "colonias"
     id = Column(Integer, primary_key=True, index=True)
     d_codigo=  Column(Integer, index= True)
@@ -42,7 +42,7 @@ class Colonia(_database.Base):
     municipio = relationship('Municipio', back_populates='colonias_list')
 
 
-class Admin(_database.Base):
+class Admin(Base):
     __tablename__ = "admins"
     id = Column(Integer, primary_key=True, index=True)
     admin_name =  Column(String, index=True)

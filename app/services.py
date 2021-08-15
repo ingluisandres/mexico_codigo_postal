@@ -1,17 +1,16 @@
 from sqlalchemy.orm import Session
 
-import app.models as _models
-import app.schemas as _schemas
+from app import models, schemas
 
 
 def get_colonia(db: Session, nombre:str):
-    return db.query(_models.Colonia).filter(_models.Colonia.d_asenta == nombre).all()
+    return db.query(models.Colonia).filter(models.Colonia.d_asenta == nombre).all()
 
 def get_colonia_by_cp(db: Session, cp:str):
-    return db.query(_models.Colonia).filter(_models.Colonia.d_codigo == cp).all()
+    return db.query(models.Colonia).filter(models.Colonia.d_codigo == cp).all()
 
-def create_colonia(db: Session, colonia: _schemas.Colonia):
-    db_colonia = _models.Colonia(
+def create_colonia(db: Session, colonia: schemas.Colonia):
+    db_colonia = models.Colonia(
         d_codigo= colonia.d_codigo,
         d_asenta=colonia.d_asenta,
         d_tipo_asenta=colonia.d_tipo_asenta,
@@ -33,18 +32,18 @@ def create_colonia(db: Session, colonia: _schemas.Colonia):
 
 
 def get_municipio(db: Session, nombre:str):
-    return db.query(_models.Municipio).filter(_models.Municipio.D_mnpio == nombre).all()
+    return db.query(models.Municipio).filter(models.Municipio.D_mnpio == nombre).all()
 
 def get_municipios(db:Session, skip:int, limit:int):
-    return db.query(_models.Municipio).offset(skip).limit(limit).all()
+    return db.query(models.Municipio).offset(skip).limit(limit).all()
 
 
 def get_estado(db: Session, nombre:str):
-    return db.query(_models.Estado).filter(_models.Estado.d_estado == nombre).first()
+    return db.query(models.Estado).filter(models.Estado.d_estado == nombre).first()
 
 
-def create_admin(db: Session, admin: _schemas.Admin):
-    db_admin = _models.Admin(
+def create_admin(db: Session, admin: schemas.Admin):
+    db_admin = models.Admin(
         admin_name= admin.admin_name,
         password=admin.password
     )
