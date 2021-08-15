@@ -41,3 +41,14 @@ def get_municipios(db:Session, skip:int, limit:int):
 
 def get_estado(db: Session, nombre:str):
     return db.query(_models.Estado).filter(_models.Estado.d_estado == nombre).first()
+
+
+def create_admin(db: Session, admin: _schemas.Admin):
+    db_admin = _models.Admin(
+        admin_name= admin.admin_name,
+        password=admin.password
+    )
+    db.add(db_admin)
+    db.commit()
+    db.refresh(db_admin)
+    return db_admin

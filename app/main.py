@@ -80,6 +80,6 @@ def read_estado(
     return db_estado
 
 
-@app.post('/admin', response_model=_schemas.ShowColonia)
-def create(colonia: _schemas.Colonia, db: Session=Depends(_database.get_db)):
-    return _services.create_colonia(db=db, colonia=colonia)
+@app.post('/admin', response_model=_schemas.ShowAdmin)
+def create_admin(admin: _schemas.Admin, db: Session=Depends(_database.get_db)):
+    return _services.create_admin(db=db, admin=admin)

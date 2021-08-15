@@ -75,4 +75,16 @@ class ShowEstado(Estado):
     id:int
     municipios_list: List[ShowMunicipioInEstado]
     class Config():
-        orm_mode = True    
+        orm_mode = True
+
+
+class Admin(BaseModel):
+    admin_name: str
+    password: str
+    class Config():
+        orm_mode = True
+    
+class ShowAdmin(BaseModel):
+    admin_name: str
+    class Config():
+        orm_mode = True
