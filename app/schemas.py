@@ -88,3 +88,18 @@ class ShowAdmin(BaseModel):
     admin_name: str
     class Config():
         orm_mode = True
+
+
+class Login(BaseModel):
+    admin_name: str
+    password: str
+    class Config():
+        orm_mode = True
+
+
+class Token(BaseModel):
+    access_token: str
+    tocken_type: str
+
+class TokenData(BaseModel):
+    admin_name: Optional[str] = None    

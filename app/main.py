@@ -1,9 +1,14 @@
+from datetime import timedelta
+
 from typing import Optional, List
 from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy.orm import Session
 from starlette.responses import RedirectResponse
 
 from app import database, schemas, services
+
+
+ACCESS_TOKEN_EXPIRE_MINUTES = 30  
 
 
 app = FastAPI()
@@ -79,3 +84,23 @@ def read_estado(
 @app.post('/admin', response_model=schemas.ShowAdmin)
 def create_admin(admin: schemas.Admin, db: Session=Depends(database.get_db)):
     return services.create_admin(db=db, admin=admin)
+
+
+@app.post('/login')
+def login(admin: schemas.Login, db: Session=Depends(database.get_db)):
+    user_admin = services.login(db=db, admin=admin)
+    if not user_admin:
+        raise HTTPException(
+            status_code=404, detail='Invalid Credentials'
+        )
+    if not services.verify_password(admin.password, user_admin.password):
+        raise HTTPException(
+            status_code=404, detail='Incorrect admin name or password'
+        )      
+    # generate a jwd token ---------------------
+
+    access_token_expires = timedelta(minutes=ACCESS_TOKEN_EXPIRE_MINUTES)
+    access_token = services.create_access_token(
+        data={"sub": user_admin.admin_name}, expires_delta=access_token_expires
+    )
+    return {"access_token": access_token, "token_type": "bearer"}
