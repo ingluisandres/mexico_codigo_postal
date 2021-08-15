@@ -1,4 +1,5 @@
 from sqlalchemy.orm import Session
+from passlib.context import CryptContext
 
 from app import models, schemas
 
@@ -14,16 +15,13 @@ def create_colonia(db: Session, colonia: schemas.Colonia):
         d_codigo= colonia.d_codigo,
         d_asenta=colonia.d_asenta,
         d_tipo_asenta=colonia.d_tipo_asenta,
-        D_mnpio=colonia.D_mnpio,
+        D_mnipio=colonia.D_mnipio,
         d_estado=colonia.d_estado,
-        d_CP=colonia.d_CP,
         c_estado=colonia.c_estado,
-        c_CP=colonia.c_CP,
         c_tipo_asenta=colonia.c_tipo_asenta,
         c_mnpio=colonia.c_mnpio,
         id_asenta_cpcons=colonia.id_asenta_cpcons,
-        d_zona=colonia.d_zona,
-        c_cve_ciudad=colonia.c_cve_ciudad
+        d_zona=colonia.d_zona
     )
     db.add(db_colonia)
     db.commit()
@@ -43,9 +41,11 @@ def get_estado(db: Session, nombre:str):
 
 
 def create_admin(db: Session, admin: schemas.Admin):
+    pwd_context = CryptContext(schemes=["bcrypt"], deprecated="auto")
+    hashed_password = pwd_context.hash(admin.password)
     db_admin = models.Admin(
         admin_name= admin.admin_name,
-        password=admin.password
+        password=hashed_password
     )
     db.add(db_admin)
     db.commit()
