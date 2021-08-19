@@ -1,0 +1,19 @@
+version: '3'
+services:
+  # web:
+  #   build: .
+  #   #restart: always SOLAMENTE EN DESARROLLO SE DEJA COMENTADO ESTA LINEA
+  #   ports:
+  #   - '5000:80'
+  #   container_name: contenedor-python
+  database:
+      image: mysql:8.0.13
+      command: --default-authentication-plugin=mysql_native_password
+      environment:
+        MYSQL_DATABASE: codigo_postal
+        MYSQL_ROOT_PASSWORD: somepassword
+      ports:
+      - '3306:3306'
+      container_name: contenedor-sql
+      volumes: 
+      - ~/docker/mysql-data:/var/lib/mysql
