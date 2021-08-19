@@ -37,10 +37,10 @@ def read_colonia_by_cp(
         )
     return db_colonia
 
-@router.post('/colonias', response_model=schemas.ShowColonia)
-def create_colonia(colonia: schemas.Colonia, db: Session=Depends(database.get_db),
-current_user: schemas.Admin = Depends(services.get_current_user)):
-    return services.create_colonia(db=db, colonia=colonia)
+# @router.post('/colonias', response_model=schemas.ShowColonia)
+# def create_colonia(colonia: schemas.Colonia, db: Session=Depends(database.get_db),
+# current_user: schemas.Admin = Depends(services.get_current_user)):
+#     return services.create_colonia(db=db, colonia=colonia)
 
 
 @router.get('/municipio/{nombre}', response_model=List[schemas.ShowMunicipio])
@@ -69,10 +69,10 @@ def read_estado(
     return db_estado
 
 
-@router.post('/newadmin', response_model=schemas.ShowAdmin)
-def create_admin(admin: schemas.Admin, db: Session=Depends(database.get_db),
-current_user: schemas.Admin = Depends(services.get_current_user)):
-    return services.create_admin(db=db, admin=admin)
+# @router.post('/newadmin', response_model=schemas.ShowAdmin)
+# def create_admin(admin: schemas.Admin, db: Session=Depends(database.get_db),
+# current_user: schemas.Admin = Depends(services.get_current_user)):
+#     return services.create_admin(db=db, admin=admin)
 
 @router.get('/me', response_model=schemas.ShowAdmin)
 def get_admin(current_user: schemas.Admin= Depends(services.get_admin)):
