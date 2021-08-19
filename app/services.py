@@ -7,13 +7,22 @@ from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 
-from app import models, schemas
+from app import models, schemas, database
 
 
 SECRET_KEY = "09d25e094faa6ca2556c818166b7a9563b93f7099f6f0f4caa6cf63b88e8d3e7"
 ALGORITHM = "HS256"
 
 oauth2_scheme = OAuth2PasswordBearer(tokenUrl="login")
+
+
+def get_admin(db: Session=Depends(database.get_db), token: str = Depends(oauth2_scheme)):
+    try:
+        payload = jwt.decode(token, SECRET_KEY, algorithms=[ALGORITHM])
+        admin = db.query(models.Admin).get(payload["sub"])
+    except:
+        raise HTTPException(status_code=401, detail="Invalid Email or Password")
+    return db.query(models.Admin).filter(models.Admin.admin_name == payload["sub"]).first()
 
 
 def get_colonia(db: Session, nombre:str):

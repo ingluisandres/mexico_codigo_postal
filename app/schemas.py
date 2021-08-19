@@ -85,6 +85,7 @@ class Admin(BaseModel):
         orm_mode = True
     
 class ShowAdmin(BaseModel):
+    id: int
     admin_name: str
     class Config():
         orm_mode = True

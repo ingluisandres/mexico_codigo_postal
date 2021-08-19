@@ -73,3 +73,7 @@ def read_estado(
 def create_admin(admin: schemas.Admin, db: Session=Depends(database.get_db),
 current_user: schemas.Admin = Depends(services.get_current_user)):
     return services.create_admin(db=db, admin=admin)
+
+@router.get('/me', response_model=schemas.ShowAdmin)
+def get_admin(current_user: schemas.Admin= Depends(services.get_admin)):
+    return current_user
