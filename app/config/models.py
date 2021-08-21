@@ -1,8 +1,6 @@
-from  sqlalchemy import Column, Integer, String, ForeignKey
+from sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-import sys
-sys.path.append("..")
 from app.config.database import Base
 
 

@@ -7,8 +7,6 @@ from sqlalchemy.orm import Session
 from passlib.context import CryptContext
 from jose import JWTError, jwt
 
-import sys
-sys.path.append("..")
 from app.schemas import schemas
 from app.config import database, models
 from app.services import services
