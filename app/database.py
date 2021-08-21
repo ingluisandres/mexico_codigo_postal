@@ -2,7 +2,7 @@ import sqlalchemy as _sql
 import sqlalchemy.ext.declarative as _declarative
 import sqlalchemy.orm as _orm
 
-SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:somepassword@localhost:3306/codigo_postal'
+SQLALCHEMY_DATABASE_URL = 'mysql+pymysql://root:somepassword@contenedor-sql:3306/codigo_postal'
 
 
 

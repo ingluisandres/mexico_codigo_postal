@@ -3,8 +3,8 @@ from datetime import timedelta
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 
-from app import database
-from app.routers import admin, login
+import database
+from routers import admin, login
 
 
 app = FastAPI()
