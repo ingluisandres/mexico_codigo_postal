@@ -1,3 +1,4 @@
+PyMySQL==1.0.2
 python-multipart==0.0.5
 cryptography==3.4.7
 ecdsa==0.17.0
