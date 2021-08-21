@@ -18,4 +18,4 @@ services:
       - seccomp:unconfined
       container_name: contenedor-sql
       volumes: 
-      - ~/docker/mysql-data:/var/lib/mysql
+      - .docker/mysql-data:/var/lib/mysql
