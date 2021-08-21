@@ -3,7 +3,7 @@ from datetime import timedelta
 from fastapi import FastAPI
 from starlette.responses import RedirectResponse
 
-import database
+from config import database
 from routers import admin, login
 
 

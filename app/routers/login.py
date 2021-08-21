@@ -6,7 +6,11 @@ from typing import Optional, List
 from fastapi import Depends, HTTPException
 from sqlalchemy.orm import Session
 
-from app import schemas, database, services
+import sys
+sys.path.append("..")
+from app.schemas import schemas
+from app.config import database
+from app.services import services
 
 
 router = APIRouter(

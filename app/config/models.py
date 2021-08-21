@@ -1,7 +1,9 @@
 from  sqlalchemy import Column, Integer, String, ForeignKey
 from sqlalchemy.orm import relationship
 
-from app.database import Base
+import sys
+sys.path.append("..")
+from app.config.database import Base
 
 
 class Estado(Base):
