@@ -12,7 +12,7 @@ from app.services import services
 
 
 router = APIRouter(
-    prefix="/login",
+    prefix="/v1/login",
     tags=["login"]
 )
 

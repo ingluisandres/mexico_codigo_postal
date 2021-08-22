@@ -9,11 +9,11 @@ from app.services import services
 
 
 router = APIRouter(
-    prefix="/admin",
+    prefix="/v1/admin",
     tags=["admin"]
 )
 
-@router.get('/colonias/{nombre}', response_model=List[schemas.ShowColonia])
+@router.get('/colonia/{nombre}', response_model=List[schemas.ShowColonia])
 def read_colonia(
             nombre: str, 
             db: Session=Depends(database.get_db),
@@ -27,7 +27,7 @@ def read_colonia(
         )
     return db_colonia
 
-@router.get('/colonias/cp/{cp}', response_model=List[schemas.ShowColonia])
+@router.get('/colonia/cp/{cp}', response_model=List[schemas.ShowColonia])
 def read_colonia_by_cp(
             cp: str, 
             db: Session=Depends(database.get_db),
