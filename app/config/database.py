@@ -4,7 +4,7 @@ from sqlalchemy.orm import sessionmaker
 
 from app.security.security import MYSQL_ROOT_PASSWORD
 
-print(MYSQL_ROOT_PASSWORD)
+
 SQLALCHEMY_DATABASE_URL = f'mysql+pymysql://root:{MYSQL_ROOT_PASSWORD}@contenedor-sql:3306/codigo_postal'
 engine = create_engine(
     SQLALCHEMY_DATABASE_URL, pool_pre_ping=True

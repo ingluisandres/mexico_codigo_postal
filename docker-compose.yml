@@ -3,6 +3,8 @@ services:
   web:
     build: .
     #restart: always SOLAMENTE EN DESARROLLO SE DEJA COMENTADO ESTA LINEA
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
     ports:
     - '5000:80'
     container_name: contenedor-python
@@ -13,7 +15,7 @@ services:
       command: --default-authentication-plugin=mysql_native_password
       environment:
         MYSQL_DATABASE: codigo_postal
-        MYSQL_ROOT_PASSWORD: somepasswordsomepassword #${MYSQL_ROOT_PASSWORD}
+        MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
       ports:
       - '3306:3306'
       security_opt:
