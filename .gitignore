@@ -4,5 +4,4 @@
 __pycache__/
 *.pyc
 .docker/
-database.db
 .env
